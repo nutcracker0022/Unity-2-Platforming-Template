@@ -18,6 +18,10 @@ public class playerManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject loseMenu;
 
+    // Keycodes
+    public KeyCode useKey = KeyCode.E;
+    public KeyCode swapKey = KeyCode.I;
+
     void Start()
     {
         // Makes sure game is "unpaused"
@@ -39,17 +43,25 @@ public class playerManager : MonoBehaviour
         {
             LoseGame();
         }
+        if (Input.GetKeyDown(useKey))
+        {
+
+        }
+        if (Input.GetKeyDown(swapKey))
+        {
+
+        }
     }
 
     void CheckPlayerComponents()
     {
         if (healthComponent == null)
         {
-            healthComponent = GetComponent<playerHealth>();
+            healthComponent = GameObject.Find("PlayerInfo").GetComponent<playerHealth>();
         }
         if (scoreComponent == null)
         {
-            scoreComponent = GetComponent<playerScore>();
+            scoreComponent = GameObject.Find("PlayerInfo").GetComponent<playerScore>();
         }
     }
 
