@@ -9,7 +9,7 @@ public class PlayerAnimationControl : MonoBehaviour
     [SerializeField]
     private Animator playerAnimator;
     [SerializeField]
-    private Rigidbody2D rb;
+    private NinjaController.NinjaController nc;
 
     private bool movingRight = false;
 
@@ -30,9 +30,9 @@ public class PlayerAnimationControl : MonoBehaviour
         {
             playerAnimator = GetComponentInChildren<Animator>();
         }
-        if (rb == null)
+        if (nc == null)
         {
-            rb = GetComponent<Rigidbody2D>();
+            nc = GetComponent<NinjaController.NinjaController>();
         }
     }
 
@@ -56,16 +56,16 @@ public class PlayerAnimationControl : MonoBehaviour
     private void UpdateAnimationParameters()
     {
         //Debug.Log($"Idle? {Mathf.Abs(rb.velocity.x) < idleThreshold}");
-        playerAnimator.SetBool("Idling", Mathf.Abs(rb.velocity.x) < idleThreshold);
+        playerAnimator.SetBool("Idling", Mathf.Abs(nc.Velocity.x) < idleThreshold);
 
         //Debug.Log($"Jump Up? {rb.velocity.y > jumpThreshold}");
-        playerAnimator.SetBool("MoveUpwards", rb.velocity.y > jumpThreshold);
-        
+        playerAnimator.SetBool("MoveUpwards", nc.Velocity.y > jumpThreshold);
+
 
         //Debug.DrawRay(this.transform.position + (Vector3)Vector2.down * rayStart, Vector2.down * (rayStart + rayLength));
-        RaycastHit2D hit = Physics2D.Raycast(this.transform.position + (Vector3)Vector2.down * rayStart, Vector2.down, rayLength);
+        // RaycastHit2D hit = Physics2D.Raycast(this.transform.position + (Vector3)Vector2.down * rayStart, Vector2.down, rayLength);
         //Debug.Log(hit.transform);
-        playerAnimator.SetBool("Grounded", hit);
+        playerAnimator.SetBool("Grounded", nc.IsOnGround);//hit);
     }
 
 }
