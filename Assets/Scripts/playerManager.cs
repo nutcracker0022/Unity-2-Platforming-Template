@@ -1,64 +1,64 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class playerManager : MonoBehaviour
 {
-    // Player specific variables
-    private int health;
-    private int score;
+    // Player specific components
+    [SerializeField]
+    private playerHealth healthComponent;
+    [SerializeField]
+    private playerScore scoreComponent;
 
     // Boolean values
     private bool isGamePaused = false;
 
     // UI stuff
-    public Text healthText;
-    public Text scoreText;
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
 
-    // Start is called before the first frame update
     void Start()
     {
         // Makes sure game is "unpaused"
         isGamePaused = false;
         Time.timeScale = 1.0f;
 
-        // Make sure all menus are filled in
+        // Make sure all components and menus are filled in
+        CheckPlayerComponents();
         FindAllMenus();
 
         //Start player with initial health and score
-        health = 100;
-        score = 0;
+        healthComponent.SetHealth(100);
+        scoreComponent.SetScore(0);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        healthText.text = "Health: " + health.ToString();
-        scoreText.text  = "Score:  " + score.ToString();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseGame();
         }
-        if (health <= 0)
+        if (healthComponent.GetHealth() <= 0)
         {
             LoseGame();
         }
     }
 
+    void CheckPlayerComponents()
+    {
+        if (healthComponent == null)
+        {
+            healthComponent = GetComponent<playerHealth>();
+        }
+        if (scoreComponent == null)
+        {
+            scoreComponent = GetComponent<playerScore>();
+        }
+    }
+
    void FindAllMenus()
     {
-        if (healthText == null)
-        {
-            healthText = GameObject.Find("HealthText").GetComponent<Text>();
-        }
-        if (scoreText == null)
-        {
-            scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
-        }
         if (winMenu == null)
         {
             winMenu = GameObject.Find("WinGameMenu");
@@ -108,12 +108,12 @@ public class playerManager : MonoBehaviour
 
     public void ChangeHealth(int value)
     {
-        health += value;
+        healthComponent.UpdateHealth(value);
     }
 
     public void ChangeScore(int value)
     {
-        score += value;
+        scoreComponent.UpdateScore(value);
     }
 
 }
