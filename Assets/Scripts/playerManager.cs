@@ -9,6 +9,7 @@ public class playerManager : MonoBehaviour
     private playerHealth healthComponent;
     [SerializeField]
     private playerScore scoreComponent;
+    public playerInventory inventoryComponent;
 
     // Boolean values
     private bool isGamePaused = false;
@@ -45,11 +46,11 @@ public class playerManager : MonoBehaviour
         }
         if (Input.GetKeyDown(useKey))
         {
-
+            inventoryComponent.UseInventory();
         }
         if (Input.GetKeyDown(swapKey))
         {
-
+            inventoryComponent.SwapInventory(1);
         }
     }
 
@@ -63,9 +64,13 @@ public class playerManager : MonoBehaviour
         {
             scoreComponent = GameObject.Find("PlayerInfo").GetComponent<playerScore>();
         }
+        if (inventoryComponent == null)
+        {
+            inventoryComponent = GameObject.Find("PlayerInfo").GetComponent<playerInventory>();
+        }
     }
 
-   void FindAllMenus()
+    void FindAllMenus()
     {
         if (winMenu == null)
         {
