@@ -96,7 +96,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28, y: 2.56}
+  m_Size: {x: 0.73, y: 0.73}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 5220972085076279413}
   - component: {fileID: 6490313588998077698}
   - component: {fileID: 9180184940969470186}
+  - component: {fileID: 7205370865352366059}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -190,24 +191,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   physicsParams:
-    playerMass: 12.5
-    gameGravity: -19.5
+    playerMass: 1
+    gameGravity: -16
     jumpUpForce: 0.25
-    jumpUpVel: 18.75
-    jumpGravity: -22.5
-    jumpWallVelVertical: 12
-    jumpWallVelHorizontal: 7.5
-    inAirMaxVelHorizontal: 27.5
-    inAirMoveHorizontalForce: 12.5
-    inAirMoveHorizontalForceReverse: 28.75
-    onGroundMaxVelHorizontal: 25
-    onGroundMoveHorizontalForce: 20
-    onGroundMoveHorizontalForceReverse: 45
-    groundFriction: 35
-    groundFrictionEpsilon: 0.75
-    wallFriction: 11.25
-    wallFrictionStrongVelThreshold: -10
-    wallFrictionStrong: 22.5
+    jumpUpVel: 12
+    jumpGravity: -16
+    jumpWallVelVertical: 6
+    jumpWallVelHorizontal: 2
+    inAirMaxVelHorizontal: 16
+    inAirMoveHorizontalForce: 4
+    inAirMoveHorizontalForceReverse: 32
+    onGroundMaxVelHorizontal: 16
+    onGroundMoveHorizontalForce: 16
+    onGroundMoveHorizontalForceReverse: 32
+    groundFriction: 32
+    groundFrictionEpsilon: 0.5
+    wallFriction: 8
+    wallFrictionStrongVelThreshold: -8
+    wallFrictionStrong: 16
     version: 1
 --- !u!114 &5814465217306765050
 MonoBehaviour:
@@ -221,8 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fd5a719678c04218977bf7f72898ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 0}
-  scoreText: {fileID: 0}
+  healthComponent: {fileID: 0}
+  scoreComponent: {fileID: 0}
   pauseMenu: {fileID: 0}
   winMenu: {fileID: 0}
   loseMenu: {fileID: 0}
@@ -238,6 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4646cfec22ff44c4d809d0400a1f6ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  healthText: {fileID: 0}
 --- !u!114 &6490313588998077698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a048b4052c21a4b2fbe3a98ee77757c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
+  scoreText: {fileID: 0}
 --- !u!114 &9180184940969470186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,3 +267,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40aa6ca29b9344f3f98a51e2d5b09a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSprite: {fileID: 0}
+  playerAnimator: {fileID: 0}
+  rb: {fileID: 0}
+  idleThreshold: 0.25
+  jumpThreshold: 0.5
+  rayStart: 0.45
+  rayLength: 0.15
+--- !u!61 &7205370865352366059
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5814465217306765024}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.32}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.32, y: 0.16}
+  m_EdgeRadius: 0
