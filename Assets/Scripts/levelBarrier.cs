@@ -1,0 +1,10 @@
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class levelBarrier : MonoBehaviour
+{
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+}

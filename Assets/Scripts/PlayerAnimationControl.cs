@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimationControl : MonoBehaviour
+public class playerAnimationControl : MonoBehaviour
 {
     [SerializeField]
     private SpriteRenderer playerSprite;
