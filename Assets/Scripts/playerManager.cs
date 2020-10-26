@@ -27,10 +27,6 @@ public class playerManager : MonoBehaviour
         // Make sure all components and menus are filled in
         CheckPlayerComponents();
         FindAllMenus();
-
-        //Start player with initial health and score
-        healthComponent.SetHealth(100);
-        scoreComponent.SetScore(0);
     }
 
     void Update()

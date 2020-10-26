@@ -17,6 +17,7 @@ public class playerScore : MonoBehaviour
         {
             scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         }
+        scoreText.text = "Score: " + score.ToString();
     }
 
     public int GetScore()

@@ -17,6 +17,7 @@ public class playerHealth : MonoBehaviour
         {
             healthText = GameObject.Find("HealthText").GetComponent<TextMeshProUGUI>();
         }
+        healthText.text = "Health: " + health.ToString();
     }
 
     public int GetHealth()
