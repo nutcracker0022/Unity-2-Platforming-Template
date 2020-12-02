@@ -6,10 +6,8 @@ using UnityEngine.Events;
 public class PlayerManagerScript : MonoBehaviour
 {
     // Player Values
-    [SerializeField]
-    private int health = 100;
-    [SerializeField]
-    private int score = 0;
+    public int health = 100;
+    public int score = 0;
 
     // Bool Values
     private bool isPaused = false;
