@@ -262,16 +262,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5814465217306765029, guid: cecb782ae83f845f2b7d0e6101eb6cbb,
-        type: 3}
-      propertyPath: physicsParams.onGroundMoveHorizontalForceReverse
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 5814465217306765029, guid: cecb782ae83f845f2b7d0e6101eb6cbb,
-        type: 3}
-      propertyPath: physicsParams.inAirMoveHorizontalForceReverse
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 5814465217306765030, guid: cecb782ae83f845f2b7d0e6101eb6cbb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1160,7 +1150,7 @@ GameObject:
   - component: {fileID: 1623808238}
   - component: {fileID: 1623808239}
   m_Layer: 0
-  m_Name: Water
+  m_Name: Acid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

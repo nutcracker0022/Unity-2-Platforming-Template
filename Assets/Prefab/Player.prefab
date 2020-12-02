@@ -198,10 +198,10 @@ MonoBehaviour:
     jumpWallVelHorizontal: 2
     inAirMaxVelHorizontal: 16
     inAirMoveHorizontalForce: 4
-    inAirMoveHorizontalForceReverse: 32
+    inAirMoveHorizontalForceReverse: 64
     onGroundMaxVelHorizontal: 16
     onGroundMoveHorizontalForce: 16
-    onGroundMoveHorizontalForceReverse: 32
+    onGroundMoveHorizontalForceReverse: 64
     groundFriction: 32
     groundFrictionEpsilon: 0.5
     wallFriction: 8
@@ -222,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 0}
   scoreComponent: {fileID: 0}
+  inventoryComponent: {fileID: 0}
   pauseMenu: {fileID: 0}
   winMenu: {fileID: 0}
   loseMenu: {fileID: 0}

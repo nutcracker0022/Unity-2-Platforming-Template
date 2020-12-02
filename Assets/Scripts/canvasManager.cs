@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class canvasManager : MonoBehaviour
 {
     public void QuitGame()
     {
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#endif
         Application.Quit();
     }
 
