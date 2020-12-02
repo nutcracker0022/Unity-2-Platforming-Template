@@ -40,17 +40,17 @@ public class canvasManager : MonoBehaviour
         if (winMenu == null)
         {
             winMenu = GameObject.Find("WinGameMenu");
-            winMenu.SetActive(false);
+            winMenu?.SetActive(false);
         }
         if (loseMenu == null)
         {
             loseMenu = GameObject.Find("LoseGameMenu");
-            loseMenu.SetActive(false);
+            loseMenu?.SetActive(false);
         }
         if (pauseMenu == null)
         {
             pauseMenu = GameObject.Find("PauseGameMenu");
-            pauseMenu.SetActive(false);
+            pauseMenu?.SetActive(false);
         }
     }
 
@@ -58,11 +58,11 @@ public class canvasManager : MonoBehaviour
     {
         if (player == null)
         {
-            player = GameObject.FindWithTag("Player").GetComponent<PlayerManagerScript>();
+            player = GameObject.FindWithTag("Player")?.GetComponent<PlayerManagerScript>();
         }
         if (goal == null)
         {
-            goal = GameObject.FindWithTag("Finish").GetComponent<EndGoalScript>();
+            goal = GameObject.FindWithTag("Finish")?.GetComponent<EndGoalScript>();
         }
     }
 

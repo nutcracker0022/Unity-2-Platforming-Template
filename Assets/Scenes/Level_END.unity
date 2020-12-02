@@ -452,6 +452,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e93d09838a749b380486783e333563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
+  winMenu: {fileID: 0}
+  loseMenu: {fileID: 0}
 --- !u!224 &7813116869444546917
 RectTransform:
   m_ObjectHideFlags: 0
@@ -884,7 +887,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7813116870447197643}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1023.3571, y: 283.15402, z: -567.0186}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7813116869444546917}
@@ -928,7 +931,7 @@ GameObject:
   - component: {fileID: 7813116870757651073}
   - component: {fileID: 7813116870757651102}
   m_Layer: 5
-  m_Name: WinGameMenu
+  m_Name: WinGameScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
