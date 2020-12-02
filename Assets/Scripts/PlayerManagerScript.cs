@@ -25,6 +25,7 @@ public class PlayerManagerScript : MonoBehaviour
     private List<Collectable> inventory = new List<Collectable>();
     private int currentSelection = 0;
     public UnityEvent_Collectable OnInventoryAdd;
+    public UnityEvent_Collectable OnInventoryChange;
     public UnityEvent_Int OnInventoryRemove;
 
     // Keycodes
@@ -40,7 +41,8 @@ public class PlayerManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        OnHealthChange?.Invoke(health);
+        OnScoreChange?.Invoke(score);
     }
 
     private void OnEnable()
@@ -69,6 +71,7 @@ public class PlayerManagerScript : MonoBehaviour
         if (Input.GetKeyDown(swapKey) && inventory.Count > 0)
         {
             currentSelection = (currentSelection + 1) % inventory.Count;
+            //OnInventoryChange?.Invoke(inventory[currentSelection]);
         }
         //====== End of new Input check ======
     }

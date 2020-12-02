@@ -35,24 +35,30 @@ public class PlayerUIScript : MonoBehaviour
 
     private void OnEnable()
     {
-        GetComponent<PlayerManagerScript>().OnHealthChange.AddListener(UpdateHealthUI);
-        GetComponent<PlayerManagerScript>().OnScoreChange.AddListener(UpdateScoreUI);
+        PlayerManagerScript player = GetComponent<PlayerManagerScript>();
+        player.OnHealthChange.AddListener(UpdateHealthUI);
+        player.OnScoreChange.AddListener(UpdateScoreUI);
     }
 
     private void OnDisable()
     {
-        GetComponent<PlayerManagerScript>().OnHealthChange.RemoveListener(UpdateHealthUI);
-        GetComponent<PlayerManagerScript>().OnScoreChange.RemoveListener(UpdateScoreUI);
+        PlayerManagerScript player = GetComponent<PlayerManagerScript>();
+        player.OnHealthChange.RemoveListener(UpdateHealthUI);
+        player.OnScoreChange.RemoveListener(UpdateScoreUI);
     }
 
     public void UpdateHealthUI(int health)
     {
-        healthText.text = "Health: " + health.ToString();
+        healthText.text = $"Health: {health}";
     }
 
     public void UpdateScoreUI(int score)
     {
-        scoreText.text = "Score: " + score.ToString();
+        scoreText.text = $"Score: {score}";
     }
 
+    public void UpdateInventoryUI(Collectable item)
+    {
+        inventoryText.text = $"Inventory: {item.collectableName} ({item.description})";
+    }
 }
