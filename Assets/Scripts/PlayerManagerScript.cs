@@ -39,13 +39,11 @@ public class PlayerManagerScript : MonoBehaviour
     private void OnEnable()
     {
         OnPauseToggle.AddListener(TogglePauseGame);
-        OnHealthChange.AddListener(Ping);
     }
 
     private void OnDisable()
     {
         OnPauseToggle.RemoveListener(TogglePauseGame);
-        OnHealthChange.RemoveListener(Ping);
     }
 
     // Update is called once per frame
@@ -96,9 +94,12 @@ public class PlayerManagerScript : MonoBehaviour
         }
     }
 
-    void Ping(int i)
+    private void OnDestroy()
     {
-        Debug.Log("Ping" + i);
+        OnPauseToggle.RemoveAllListeners();
+        OnLoseGame.RemoveAllListeners();
+        OnHealthChange.RemoveAllListeners();
+        OnScoreChange.RemoveAllListeners();
     }
 }
 
