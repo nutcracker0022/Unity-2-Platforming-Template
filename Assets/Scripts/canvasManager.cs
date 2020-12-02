@@ -58,11 +58,11 @@ public class canvasManager : MonoBehaviour
     {
         if (player == null)
         {
-            player = GameObject.FindWithTag("Player").GetComponent<PlayerManagerScript>();
+            player = GameObject.FindWithTag("Player")?.GetComponent<PlayerManagerScript>();
         }
         if (goal == null)
         {
-            goal = GameObject.FindWithTag("Finish").GetComponent<EndGoalScript>();
+            goal = GameObject.FindWithTag("Finish")?.GetComponent<EndGoalScript>();
         }
     }
 

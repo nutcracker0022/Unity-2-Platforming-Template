@@ -6,10 +6,8 @@ using UnityEngine.Events;
 public class PlayerManagerScript : MonoBehaviour
 {
     // Player Values
-    [SerializeField]
-    private int health = 100;
-    [SerializeField]
-    private int score = 0;
+    public int health = 100;
+    public int score = 0;
 
     // Bool Values
     private bool isPaused = false;
@@ -21,12 +19,12 @@ public class PlayerManagerScript : MonoBehaviour
     public UnityEvent_Int OnScoreChange;
 
     //Inventory Elements
+    public List<Collectable> inventory = new List<Collectable>();
     [SerializeField]
-    private List<Collectable> inventory = new List<Collectable>();
     private int currentSelection = 0;
     public UnityEvent_Collectable OnInventoryAdd;
     public UnityEvent_Collectable OnInventoryChange;
-    public UnityEvent_Int OnInventoryRemove;
+    public UnityEvent_Collectable OnInventoryRemove;
 
     // Keycodes
     public KeyCode useKey = KeyCode.E;
@@ -43,6 +41,10 @@ public class PlayerManagerScript : MonoBehaviour
     {
         OnHealthChange?.Invoke(health);
         OnScoreChange?.Invoke(score);
+        if (inventory.Count > 0)
+        {
+            OnInventoryChange?.Invoke(inventory[currentSelection]);
+        }
     }
 
     private void OnEnable()
@@ -65,13 +67,14 @@ public class PlayerManagerScript : MonoBehaviour
         //====== Start of new Input check ======
         if (Input.GetKeyDown(useKey) && inventory.Count > 0)
         {
-            inventory[currentSelection].Use();
-            InventoryRemove(currentSelection);
+            Collectable currentItem = inventory[currentSelection];
+            InventoryRemove();
+            currentItem.Use();
         }
         if (Input.GetKeyDown(swapKey) && inventory.Count > 0)
         {
             currentSelection = (currentSelection + 1) % inventory.Count;
-            //OnInventoryChange?.Invoke(inventory[currentSelection]);
+            OnInventoryChange?.Invoke(inventory[currentSelection]);
         }
         //====== End of new Input check ======
     }
@@ -117,18 +120,28 @@ public class PlayerManagerScript : MonoBehaviour
     //====== Start of new Functions ======
     private void InventoryAdd(Collectable item)
     {
+        item.collectableName += $" {inventory.Count}";
         item.player = this.gameObject;
         item.transform.parent = null;
-        inventory.Add(item);
+        currentSelection = inventory.Count - 1;
         item.gameObject.SetActive(false);
+        DontDestroyOnLoad(item.gameObject);
+        OnInventoryAdd?.Invoke(item);
     }
 
-    private void InventoryRemove(int index)
+    private void InventoryRemove()
     {
-        inventory.RemoveAt(index);
-        if(inventory.Count > 0)
+        OnInventoryRemove?.Invoke(inventory[currentSelection]);
+        inventory.RemoveAt(currentSelection);
+        if (inventory.Count == 0)
         {
-            currentSelection = (currentSelection - 1) % inventory.Count;
+            currentSelection = 0;
+            OnInventoryChange?.Invoke(null);
+        }
+        else
+        {
+            currentSelection = (currentSelection + 1) % inventory.Count;
+            OnInventoryChange?.Invoke(inventory[currentSelection]);
         }
     }
 
@@ -137,6 +150,7 @@ public class PlayerManagerScript : MonoBehaviour
         Collectable item = collision.GetComponent<Collectable>();
         if (item != null)
         {
+            inventory.Add(item);
             InventoryAdd(item);
         }
     }

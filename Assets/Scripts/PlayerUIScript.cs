@@ -38,6 +38,9 @@ public class PlayerUIScript : MonoBehaviour
         PlayerManagerScript player = GetComponent<PlayerManagerScript>();
         player.OnHealthChange.AddListener(UpdateHealthUI);
         player.OnScoreChange.AddListener(UpdateScoreUI);
+
+        player.OnInventoryAdd.AddListener(UpdateInventoryUI);
+        player.OnInventoryChange.AddListener(UpdateInventoryUI);
     }
 
     private void OnDisable()
@@ -45,6 +48,9 @@ public class PlayerUIScript : MonoBehaviour
         PlayerManagerScript player = GetComponent<PlayerManagerScript>();
         player.OnHealthChange.RemoveListener(UpdateHealthUI);
         player.OnScoreChange.RemoveListener(UpdateScoreUI);
+
+        player.OnInventoryAdd.RemoveListener(UpdateInventoryUI);
+        player.OnInventoryChange.RemoveListener(UpdateInventoryUI);
     }
 
     public void UpdateHealthUI(int health)
@@ -59,6 +65,13 @@ public class PlayerUIScript : MonoBehaviour
 
     public void UpdateInventoryUI(Collectable item)
     {
-        inventoryText.text = $"Inventory: {item.collectableName} ({item.description})";
+        if (item == null)
+        {
+            inventoryText.text = $"Inventory: None";
+        }
+        else
+        {
+            inventoryText.text = $"Inventory: {item.collectableName} ({item.description})";
+        }
     }
 }
