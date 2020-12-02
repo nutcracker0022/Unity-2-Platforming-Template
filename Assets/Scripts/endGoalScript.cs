@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class endGoalScript : MonoBehaviour
+public class EndGoalScript : MonoBehaviour
 {
+    public UnityEngine.Events.UnityEvent OnPlayerFinish;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<playerManager>().WinGame();
+            OnPlayerFinish?.Invoke();
         }
     }
 }

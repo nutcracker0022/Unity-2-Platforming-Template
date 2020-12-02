@@ -114,9 +114,10 @@ GameObject:
   - component: {fileID: 5814465217306765051}
   - component: {fileID: 5814465217306765028}
   - component: {fileID: 5814465217306765029}
-  - component: {fileID: 5814465217306765050}
   - component: {fileID: 9180184940969470186}
   - component: {fileID: 7205370865352366059}
+  - component: {fileID: 1353799352}
+  - component: {fileID: 1353799353}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -208,26 +209,6 @@ MonoBehaviour:
     wallFrictionStrongVelThreshold: -8
     wallFrictionStrong: 16
     version: 1
---- !u!114 &5814465217306765050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5814465217306765024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fd5a719678c04218977bf7f72898ee7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthComponent: {fileID: 0}
-  scoreComponent: {fileID: 0}
-  inventoryComponent: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  winMenu: {fileID: 0}
-  loseMenu: {fileID: 0}
-  useKey: 101
-  swapKey: 105
 --- !u!114 &9180184940969470186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,3 +254,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &1353799352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5814465217306765024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bca6119551d44ababfde960817f91a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
+  scoreText: {fileID: 0}
+  inventoryText: {fileID: 0}
+--- !u!114 &1353799353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5814465217306765024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95004089d1086474bad0741e0d110a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  score: 0
+  OnPauseToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLoseGame:
+    m_PersistentCalls:
+      m_Calls: []
+  useKey: 101
+  swapKey: 105

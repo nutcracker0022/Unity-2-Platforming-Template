@@ -10,7 +10,7 @@ public class Spikes : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<playerManager>()
+            collision.gameObject.GetComponent<PlayerManagerScript>()
                                 .ChangeHealth(-hurtAmount);
         }
     }
@@ -19,7 +19,7 @@ public class Spikes : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<playerManager>()
+            collision.gameObject.GetComponent<PlayerManagerScript>()
                                 .ChangeHealth(-hurtAmount/10);
         }
     }
