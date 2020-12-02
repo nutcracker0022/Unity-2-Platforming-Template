@@ -33,7 +33,8 @@ public class PlayerManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        OnHealthChange?.Invoke(health);
+        OnScoreChange?.Invoke(score);
     }
 
     private void OnEnable()
