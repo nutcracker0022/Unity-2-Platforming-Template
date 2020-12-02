@@ -52,7 +52,6 @@ public class PlayerManagerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             OnPauseToggle?.Invoke();
-            OnScoreChange?.Invoke(2);
         }
     }
 
