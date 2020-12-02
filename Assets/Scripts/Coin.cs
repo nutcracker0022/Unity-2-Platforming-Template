@@ -12,7 +12,7 @@ public class Coin : Collectable
 
     override public void Use()
     {
-        player.GetComponent<playerManager>().ChangeScore(10);
+        player.GetComponent<PlayerManagerScript>().ChangeScore(10);
         Destroy(this.gameObject); // Cleans up no longer useful object
     }
 }

@@ -20,6 +20,13 @@ public class PlayerManagerScript : MonoBehaviour
     public UnityEvent_Int OnHealthChange;
     public UnityEvent_Int OnScoreChange;
 
+    //Inventory Elements
+    [SerializeField]
+    private List<Collectable> inventory = new List<Collectable>();
+    private int currentSelection = 0;
+    public UnityEvent_Collectable OnInventoryAdd;
+    public UnityEvent_Int OnInventoryRemove;
+
     // Keycodes
     public KeyCode useKey = KeyCode.E;
     public KeyCode swapKey = KeyCode.I;
@@ -52,8 +59,18 @@ public class PlayerManagerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             OnPauseToggle?.Invoke();
-            OnScoreChange?.Invoke(2);
         }
+        //====== Start of new Input check ======
+        if (Input.GetKeyDown(useKey) && inventory.Count > 0)
+        {
+            inventory[currentSelection].Use();
+            InventoryRemove(currentSelection);
+        }
+        if (Input.GetKeyDown(swapKey) && inventory.Count > 0)
+        {
+            currentSelection = (currentSelection + 1) % inventory.Count;
+        }
+        //====== End of new Input check ======
     }
 
     public void SetPlayerInfo(int newHealth, int newScore)
@@ -94,6 +111,35 @@ public class PlayerManagerScript : MonoBehaviour
         }
     }
 
+    //====== Start of new Functions ======
+    private void InventoryAdd(Collectable item)
+    {
+        item.player = this.gameObject;
+        item.transform.parent = null;
+        inventory.Add(item);
+        item.gameObject.SetActive(false);
+    }
+
+    private void InventoryRemove(int index)
+    {
+        inventory.RemoveAt(index);
+        if(inventory.Count > 0)
+        {
+            currentSelection = (currentSelection - 1) % inventory.Count;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Collectable item = collision.GetComponent<Collectable>();
+        if (item != null)
+        {
+            InventoryAdd(item);
+        }
+    }
+    //====== End of new Functions ======
+
+
     private void OnDestroy()
     {
         OnPauseToggle.RemoveAllListeners();
@@ -106,5 +152,10 @@ public class PlayerManagerScript : MonoBehaviour
 
 [System.Serializable]
 public class UnityEvent_Int : UnityEvent<int>
+{
+}
+
+[System.Serializable]
+public class UnityEvent_Collectable: UnityEvent<Collectable>
 {
 }
