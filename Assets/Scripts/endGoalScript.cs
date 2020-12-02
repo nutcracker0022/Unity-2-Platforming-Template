@@ -13,4 +13,9 @@ public class EndGoalScript : MonoBehaviour
             OnPlayerFinish?.Invoke();
         }
     }
+
+    private void OnDestroy()
+    {
+        OnPlayerFinish.RemoveAllListeners();
+    }
 }
