@@ -22,6 +22,7 @@ public class PlayerManagerScript : MonoBehaviour
     public List<Collectable> inventory = new List<Collectable>();
     [SerializeField]
     private int currentSelection = 0;
+    private int idCounter = 1;
     public UnityEvent_Collectable OnInventoryAdd;
     public UnityEvent_Collectable OnInventoryChange;
     public UnityEvent_Collectable OnInventoryRemove;
@@ -120,12 +121,11 @@ public class PlayerManagerScript : MonoBehaviour
     //====== Start of new Functions ======
     private void InventoryAdd(Collectable item)
     {
-        item.collectableName += $" {inventory.Count}";
+        item.collectableName += $" {idCounter++}";
         item.player = this.gameObject;
         item.transform.parent = null;
         currentSelection = inventory.Count - 1;
         item.gameObject.SetActive(false);
-        DontDestroyOnLoad(item.gameObject);
         OnInventoryAdd?.Invoke(item);
     }
 
@@ -150,6 +150,7 @@ public class PlayerManagerScript : MonoBehaviour
         Collectable item = collision.GetComponent<Collectable>();
         if (item != null)
         {
+            DontDestroyOnLoad(item.gameObject);
             inventory.Add(item);
             InventoryAdd(item);
         }
